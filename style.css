@@ -1,6 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap');
 
-/* 全局样式 */
+/* 2. 定义全局变量: 字体和新的温暖活泼色彩方案 */
+:root {
+    /* 字体变量 */
+    --heading-font: 'ZCOOL KuaiLe', cursive; /* 可爱生动的标题字体 */
+    --body-font: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 清晰易读的正文字体 */
+
+    /* 色彩变量 - 温暖活泼 */
+    --primary-color: #FF8C42;    /* 珊瑚橙 - 主色调 */
+    --accent-color: #FFD700;     /* 金黄色 - 强调色 */
+    --secondary-color: #4DB6AC;  /* 柔和蓝绿 - 辅助对比色 */
+    --bg-color: #FFF8F0;         /* 非常浅的暖调背景 (类似杏仁白，但更暖一点) */
+    --card-bg-color: #FFFFFF;    /* 卡片背景 - 纯白以突出 */
+    --text-color: #4A4A4A;       /* 暖灰色 - 主要文字颜色 */
+    --text-light-color: #757575; /* 浅暖灰色 - 次要文字/元信息 */
+    --heading-color: var(--primary-color); /* 标题颜色用主色调 */
+    --link-color: var(--primary-color);     /* 链接颜色 */
+    --link-hover-color: #E57A35; /* 链接悬停 - 深一点的橙色 */
+    --border-color: #F5EADD;     /* 边框颜色 - 配合背景 */
+    --card-shadow-color: rgba(200, 100, 50, 0.1); /* 配合主色调的阴影 */
+    --accent-bg-light: rgba(255, 215, 0, 0.1); /* 强调色的浅背景 (用于激活状态) */
+    --secondary-bg-light: rgba(77, 182, 172, 0.08); /* 辅助色的浅背景 */
+}
+
+/* 3. 全局基础样式 */
 * {
     margin: 0;
     padding: 0;
@@ -8,32 +31,32 @@
 }
 
 body {
-    font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 优先使用 Noto Sans SC */
-    line-height: 1.8; /* 增加行高 */
-    color: #343a40; /* 更深的灰色 */
-    background-color: #fdfdff; /* 非常浅的背景 */
-    padding-top: 85px; /* 稍微增加页眉空间 */
-    -webkit-font-smoothing: antialiased; /* 字体抗锯齿 (Mac/iOS) */
-    -moz-osx-font-smoothing: grayscale; /* 字体抗锯齿 (Firefox) */
+    font-family: var(--body-font); /* 应用正文字体 */
+    line-height: 1.7; /* 调整行高 */
+    color: var(--text-color); /* 应用文字颜色 */
+    background-color: var(--bg-color); /* 应用背景色 */
+    padding-top: 85px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* 定义动画 */
-@keyframes fadeIn { 
-    from { opacity: 0; transform: translateY(10px); } 
+/* 4. 动画 (保持不变) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 网站页眉 */
+/* 5. 网站页眉 - 更新颜色 */
 .site-header {
-    position: fixed; /* 固定在顶部 */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px 5%; /* 使用百分比进行内边距 */
-    z-index: 1000; /* 确保在最上层 */
-    transition: padding 0.3s ease, box-shadow 0.3s ease; /* 添加阴影过渡 */
+    background: var(--card-bg-color); /* 使用卡片背景色 */
+    box-shadow: 0 2px 8px var(--card-shadow-color); /* 应用新阴影色 */
+    padding: 10px 5%;
+    z-index: 1000;
+    transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-content {
@@ -41,467 +64,432 @@ body {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 内容两端对齐 */
+    justify-content: space-between;
 }
 
-/* 头像样式 */
 .avatar {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* 圆形头像 */
-    object-fit: cover; /* 保持图片比例 */
-    border: 3px solid white; /* 白色边框，增加对比 */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg-color); /* 边框用背景色，制造一点凹陷感 */
     margin-right: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+    box-shadow: 0 2px 4px var(--card-shadow-color);
 }
 
-/* 网名样式 */
 .nickname {
-    font-family: 'Poppins', sans-serif; /* 使用 Poppins 字体 */
-    font-size: 1.6em;
-    font-weight: 700; /* 加粗 */
-    color: #212529; /* 黑色 */
+    font-family: var(--heading-font); /* 昵称也用标题字体增加个性 */
+    font-size: 2em; /* 稍微加大 */
+    font-weight: normal; /* 快乐体本身较粗，不需要加粗 */
+    color: var(--heading-color); /* 使用标题颜色 */
     margin-right: auto;
+    line-height: 1.2; /* 调整行高避免过高 */
 }
 
-/* 导航栏样式 - 更新 */
+/* 6. 导航栏 - 更新字体、颜色和效果 */
 .navbar {
-    background-color: transparent; /* 移除背景色 */
-    overflow: visible; /* 允许内容溢出 */
-    border-radius: 0; /* 移除圆角 */
-    margin-bottom: 0; /* 移除边距 */
+    background-color: transparent;
+    overflow: visible;
 }
 
 .navbar a {
-    float: none; /* 取消浮动 */
-    display: inline-block; /* 行内块元素 */
-    color: #495057;
+    display: inline-block;
+    color: var(--text-color);
     text-align: center;
-    padding: 10px 18px; /* 增加水平内边距 */
+    padding: 10px 18px;
     text-decoration: none;
-    font-size: 1em;
-    font-weight: 500; /* 中等粗细 */
-    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em; /* 稍大一点 */
+    font-weight: 500;
+    font-family: var(--body-font); /* 导航使用正文字体保持清晰 */
     border-radius: 8px;
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; /* 缩短过渡时间 */
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    position: relative; /* 为下划线动画准备 */
+    overflow: hidden; /* 隐藏溢出的下划线 */
+}
+
+/* 更生动的悬停效果 - 下划线从中间展开 */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px; /* 调整下划线位置 */
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color); /* 使用强调色 */
+    transition: all 0.3s ease-out;
+    transform: translateX(-50%);
+}
+
+.navbar a:hover::after {
+    width: 70%; /* 展开宽度 */
 }
 
 .navbar a:hover {
-    background-color: #f1f3f5;
-    color: #20c997; /* 悬停时使用新的强调色 */
+    background-color: transparent; /* 悬停时背景透明 */
+    color: var(--primary-color); /* 悬停时文字变主色 */
     transform: translateY(-2px);
 }
 
 .navbar a.active {
-    color: #007bff;
-    background-color: rgba(0, 123, 255, 0.08); /* 更淡的激活背景 */
+    color: var(--primary-color); /* 激活状态用主色 */
+    background-color: var(--accent-bg-light); /* 使用强调色的浅背景 */
     font-weight: 700;
 }
-
-/* 页面特定内容区域 */
-.page-content {
-    max-width: 1100px; /* 稍微减小最大宽度 */
-    margin: 40px auto 0;
-    padding: 0 30px 40px; /* 底部也加 padding */
-    animation: fadeIn 0.6s ease-out; /* 应用淡入动画 */
+.navbar a.active::after { /* 激活状态显示下划线 */
+     width: 70%;
+     background-color: var(--primary-color); /* 激活下划线用主色 */
 }
 
-/* 页面 Banner 样式 */
+
+/* 7. 页面内容区域 */
+.page-content {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 0 30px 40px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* 8. 页面 Banner - 新的暖色渐变背景和字体 */
 .page-banner {
-    background: linear-gradient(120deg, #845ef7, #339af0); /* 更新渐变色 */
-    color: white;
-    padding: 60px 40px; /* 增加内边距 */
+    /* 温暖的渐变背景：珊瑚橙 -> 金黄色 */
+    background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
+    color: white; /* 白色文字形成对比 */
+    padding: 60px 40px;
     text-align: center;
-    border-radius: 20px; /* 更大的圆角 */
+    border-radius: 20px;
     margin-bottom: 50px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 调整阴影 */
+    box-shadow: 0 10px 25px var(--card-shadow-color); /* 使用新的阴影色 */
 }
 
 .page-banner h1 {
-    font-family: 'Poppins', sans-serif; /* 使用 Poppins 字体 */
-    font-size: 3.2em;
-    font-weight: 700;
-    text-shadow: none; /* 移除文字阴影 */
+    font-family: var(--heading-font); /* 应用标题字体 */
+    font-size: 3.8em; /* 快乐体可以更大胆一点 */
+    font-weight: normal; /* 字体本身效果足够 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* 加回一点细微文字阴影 */
+    margin-bottom: 0.3em; /* 调整间距 */
+}
+.page-banner p { /* banner 副标题样式 */
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9); /* 半透明白色 */
+    margin-top: 0.5rem;
+    font-family: var(--body-font); /* 副标题用正文字体 */
 }
 
-/* 内容容器 (生活我) */
+
+/* 9. 通用内容容器样式 (比如 "生活我" 的主要区域) */
 .content-container {
-    background: #ffffff; /* 明确设置白色背景 */
+    background: var(--card-bg-color);
     border-radius: 15px;
     padding: 50px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* 调整阴影 */
+    box-shadow: 0 6px 20px var(--card-shadow-color);
     margin-bottom: 50px;
-    border: 1px solid #f1f3f5; /* 添加非常细的边框 */
+    border: 1px solid var(--border-color); /* 使用新的边框色 */
 }
 
+/* 10. "生活我" 页面的引用语 - 更新样式 */
 .life-quote {
-    font-size: 1.5em; /* 稍大字体 */
-    font-style: normal; /* 取消斜体 */
+    font-size: 1.6em; /* 加大一点 */
     text-align: center;
     margin-bottom: 50px;
-    color: #495057; /* 调整颜色 */
-    line-height: 1.9;
+    color: var(--text-color);
+    line-height: 1.8;
     padding: 30px 40px;
-    background-color: #f8f9fa; /* 更新背景色 */
-    border-left: 6px solid #20c997; /* 边框使用新强调色 */
+    background-color: var(--secondary-bg-light); /* 使用辅助色的浅背景 */
+    border-left: 6px solid var(--secondary-color); /* 使用辅助色做边框 */
     border-radius: 10px;
     position: relative;
+    font-family: var(--heading-font); /* 这句引用也用标题字体增加趣味 */
+    font-weight: normal;
 }
 
-.life-quote::before { /* 添加引号 */
-    content: '\201C'; /* 左引号 */
-    font-family: Georgia, serif;
+.life-quote::before { /* 引号样式 */
+    content: '\201C';
+    font-family: Georgia, serif; /* 引号保持衬线体 */
     font-size: 4em;
-    color: #ced4da;
+    color: var(--secondary-color); /* 引号颜色也用辅助色 */
+    opacity: 0.3; /* 更淡一点 */
     position: absolute;
     left: 15px;
     top: 5px;
-    opacity: 0.8;
 }
 
-/* 博客列表容器样式 */
+/* 11. 博客列表容器 */
 .blog-list-container {
-    /* 继承 .content-container 的大部分样式 */
+    /* 样式继承 .content-container */
 }
-
-.blog-list-container > p { /* 针对占位提示信息 */
+.blog-list-container > p { /* 占位提示信息 */
     font-size: 1.2em;
-    color: #6c757d;
+    color: var(--text-light-color);
     text-align: center;
     padding: 40px 0;
 }
 
-/* 未来博客文章预览样式 (示例) */
+/* 12. 博客文章预览 (示例) - 更新颜色 */
 .blog-post-preview {
-    background-color: transparent; /* 背景透明，依赖父容器 */
-    border: none; /* 移除边框 */
-    border-bottom: 1px dashed #dee2e6; /* 使用虚线下划线分隔 */
-    border-radius: 0; /* 移除圆角 */
-    padding: 35px 10px; /* 调整内边距 */
-    margin-bottom: 0; /* 移除下外边距 */
-    transition: background-color 0.3s ease; /* 添加背景过渡 */
+    border-bottom: 1px dashed var(--border-color); /* 使用新边框色 */
+    padding: 35px 10px;
+    transition: background-color 0.3s ease;
 }
-
-.blog-post-preview:last-child {
-    border-bottom: none; /* 最后一个预览没有下划线 */
-}
-
+.blog-post-preview:last-child { border-bottom: none; }
 .blog-post-preview:hover {
-    box-shadow: none; /* 移除悬停阴影 */
-    background-color: rgba(0, 123, 255, 0.03); /* 非常淡的蓝背景 */
+    background-color: var(--secondary-bg-light); /* 悬停用辅助浅色 */
 }
-
-.blog-post-preview h2 {
-    margin-bottom: 8px; /* 减小标题下边距 */
-}
-
+.blog-post-preview h2 { margin-bottom: 8px; }
 .blog-post-preview h2 a {
-    color: #339af0;
+    color: var(--heading-color); /* 标题链接用标题色 */
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6em;
-    font-weight: 700;
+    font-family: var(--heading-font); /* 博客标题也用标题字体 */
+    font-size: 1.8em; /* 调整大小 */
+    font-weight: normal;
     transition: color 0.3s ease;
 }
-
-.blog-post-preview h2 a:hover {
-    color: #20c997; /* 悬停时使用新强调色 */
-}
-
+.blog-post-preview h2 a:hover { color: var(--link-hover-color); } /* 悬停用链接悬停色 */
 .post-meta {
     font-size: 0.9em;
-    color: #868e96;
+    color: var(--text-light-color); /* 元信息用浅色文字 */
     margin-bottom: 15px;
 }
-
-.blog-post-preview p:not(.post-meta) { /* 摘要段落 */
-    color: #495057;
+.blog-post-preview p:not(.post-meta) { /* 摘要 */
+    color: var(--text-color);
     margin-bottom: 20px;
     line-height: 1.7;
 }
-
 .read-more {
     display: inline-block;
-    color: #20c997; /* 阅读更多链接使用新强调色 */
+    color: var(--secondary-color); /* 阅读更多用辅助色 */
     text-decoration: none;
-    font-weight: 500; /* 调整粗细 */
-    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-family: var(--body-font);
     transition: color 0.3s ease, transform 0.2s ease;
 }
-
 .read-more:hover {
-    color: #1aa07a; /* 强调色的深色变体 */
+    color: #3A9D92; /* 辅助色的深色变体 */
     transform: translateX(3px);
 }
 
-/* 项目容器样式 (工作我) - 更新 */
+/* 13. 项目容器 (工作我) - 更新 */
 .projects-container {
-    max-width: none; /* 移除最大宽度限制，由 page-content 控制 */
-    margin: 0; /* 移除外边距 */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 调整最小宽度 */
-    gap: 35px; /* 增加卡片间距 */
-    padding: 0; /* 移除内边距 */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    padding: 0;
 }
 
-/* 项目卡片样式 - 更新 */
+/* 14. 项目卡片 - 更新样式 */
 .project-card {
-    background: #ffffff; /* 明确白色背景 */
+    background: var(--card-bg-color);
     border-radius: 15px;
-    padding: 35px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); /* 调整阴影 */
-    border: 1px solid #f1f3f5;
+    padding: 2rem;
+    box-shadow: 0 8px 15px var(--card-shadow-color); /* 调整阴影 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    border-top: 5px solid var(--primary-color); /* 顶部用主色边框 */
+    display: flex; /* 使用 flex 布局 */
+    flex-direction: column; /* 内容垂直排列 */
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+    transform: translateY(-8px) scale(1.02); /* 悬停效果更明显 */
+    box-shadow: 0 12px 25px var(--card-shadow-color);
 }
 
-.project-card h2 {
-    color: #339af0; /* 调整标题颜色 */
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+.project-card h2 { /* 卡片主标题 */
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-size: 1.8em; /* 调整大小 */
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+    text-align: center; /* 居中 */
+    border-bottom: 2px solid var(--border-color); /* 底部细分隔线 */
+    padding-bottom: 0.8rem;
 }
 
-.project-card h3 {
-    color: #868e96; /* 调整副标题颜色 */
-    margin: 25px 0 15px;
-    font-size: 1em; /* 减小字体 */
-    text-transform: uppercase;
-    letter-spacing: 1px; /* 增加字间距 */
-    font-weight: 700; /* 加粗 */
-    border-bottom: 2px solid #f1f3f5; /* 分隔线颜色变浅 */
-    padding-bottom: 8px;
-    display: inline-block; /* 使分隔线适应内容宽度 */
-}
-
-/* 为H3中的图标添加样式 */
-.project-card h3 .icon {
-    display: inline-block;
-    margin-right: 8px;
+.project-card h3 { /* 卡片内小标题 (痛点/功能/技术) */
+    font-family: var(--body-font); /* 小标题用正文字体 */
+    color: var(--primary-color); /* 用主色调 */
     font-size: 1.1em;
-    color: #339af0; /* 图标用主蓝色 */
-    vertical-align: middle; /* 垂直居中 */
+    font-weight: 700; /* 加粗 */
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.project-card h3 .icon { /* 小标题前的图标 */
+    margin-right: 0.6rem;
+    font-size: 1.2em;
     transition: transform 0.3s ease;
+    color: var(--accent-color); /* 图标用强调色 */
 }
 
 .project-card:hover h3 .icon {
-    transform: rotate(10deg); /* 悬停时图标轻微旋转 */
+    transform: rotate(15deg) scale(1.1); /* 悬停时图标轻微旋转放大 */
 }
 
 .project-content {
-    padding: 0;
-    flex-grow: 1;
+    flex-grow: 1; /* 让内容区域填充剩余空间 */
+    color: var(--text-color);
+}
+.project-content ul, .project-content ol {
+    padding-left: 20px; /* 调整列表缩进 */
+    margin-bottom: 1rem;
+}
+.project-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+/* 移除旧的li::before样式 */
+ul { list-style: disc; } /* 使用默认圆点 */
+ol { list-style: decimal; } /* 使用默认数字 */
+li::before { content: none; } /* 确保移除之前的伪元素 */
+
+.project-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
 }
 
-/* 列表样式 - 更新 */
-ul {
-    list-style: none; /* 移除默认列表样式 */
-    padding-left: 0;
-}
-
-li {
-    margin-bottom: 12px; /* 增加列表项间距 */
-    position: relative;
-    padding-left: 30px;
-    color: #495057; /* 调整列表项颜色 */
-    line-height: 1.7; /* 调整列表项行高 */
-}
-
-li::before {
-    content: "\272A";
-    color: #fd7e14; /* 五角星改用橙色 */
-    font-weight: normal; /* 正常粗细 */
-    position: absolute;
-    left: 0;
-    top: 4px;
-    font-size: 1.2em;
-    transition: transform 0.2s ease;
-}
-
-li:hover::before {
-    transform: rotate(15deg) scale(1.1);
-}
-
-/* 段落样式 - 更新 */
-p {
-    margin-bottom: 18px; /* 增加段落下边距 */
-    color: #495057; /* 统一段落颜色 */
-}
-
-/* 页脚样式 - 更新 */
+/* 15. 页脚 - 更新颜色 */
 footer {
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     margin-top: 60px;
-    color: #868e96; /* 更浅的页脚文字 */
-    background-color: #f8f9fa; /* 页脚背景色 */
-    border-top: 1px solid #e9ecef;
+    color: var(--text-light-color); /* 页脚用浅色文字 */
+    border-top: 1px solid var(--border-color); /* 顶部细分隔线 */
     font-size: 0.9em;
 }
 
-/* 响应式设计 - 更新 */
-@media (max-width: 992px) {
-    .header-content {
-        flex-direction: column; /* 头部内容垂直排列 */
-        align-items: flex-start; /* 左对齐 */
-    }
-    .nickname {
-        margin-bottom: 10px; /* 网名下方添加间距 */
-        margin-right: 0;
-    }
-    .navbar {
-        margin-top: 10px;
-        width: 100%;
-        text-align: left; /* 导航左对齐 */
-    }
-    body {
-        padding-top: 120px; /* 为更高的固定页眉留空间 */
-    }
-    .page-banner h1 {
-        font-size: 2.5em;
-    }
-}
-
-@media (max-width: 768px) {
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
-    .page-banner h1 {
-        font-size: 2em;
-    }
-    .content-container {
-        padding: 30px;
-    }
-    .life-quote {
-        font-size: 1.2em;
-        padding: 15px;
-    }
-    body {
-        padding-top: 150px; /* 进一步增加顶部内边距 */
-    }
-}
-
-@media (max-width: 480px) {
-    .avatar {
-        width: 40px;
-        height: 40px;
-    }
-    .nickname {
-        font-size: 1.3em;
-    }
-    .navbar a {
-        padding: 8px 10px;
-        font-size: 0.9em;
-    }
-    .page-banner {
-        padding: 40px 20px;
-    }
-    .page-banner h1 {
-        font-size: 1.8em;
-    }
-    .content-container {
-        padding: 20px;
-    }
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group textarea {
-        padding: 12px;
-    }
-    .submit-button {
-        padding: 12px 20px;
-        font-size: 1em;
-    }
-    body {
-        padding-top: 140px;
-    }
-}
-
-/* 移除旧的动画 (如果需要可以保留或修改) */
-/* @keyframes fadeIn ... */
-/* .project-card animation ... */
-
-/* ================== Cooperation Page Styles ================== */
-
-/* 包含所有合作选项卡片的容器 */
+/* 16. 合作页面卡片 - 更新 */
 .cooperation-options {
-    display: flex; /* 使用 Flexbox 布局 */
-    flex-wrap: wrap; /* 允许卡片换行 */
-    gap: 2rem; /* 卡片之间的间距 */
-    justify-content: center; /* 在容器中居中卡片（如果一行只有一个）*/
-    padding: 2rem 0; /* 上下内边距 */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0;
 }
-
-/* 单个合作选项卡片的样式 */
 .cooperation-card {
-    background-color: #ffffff; /* 卡片背景色 */
-    border-radius: 8px; /* 圆角 */
-    padding: 1.5rem 2rem; /* 内边距 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 柔和阴影 */
-    flex: 1 1 300px; /* Flexbox 项目属性：允许增长，允许收缩，基础宽度 300px */
-    max-width: 450px; /* 限制最大宽度，避免在大屏幕上过宽 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡效果 */
-    border-left: 5px solid var(--accent-color); /* 左侧强调色边框 */
+    background-color: var(--card-bg-color);
+    border-radius: 15px; /* 统一圆角 */
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 15px var(--card-shadow-color);
+    flex: 1 1 300px;
+    max-width: 450px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--secondary-color); /* 左侧用辅助色边框 */
 }
-
-/* 卡片标题样式 */
+.cooperation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px var(--card-shadow-color);
+}
 .cooperation-card h2 {
-    color: var(--primary-color); /* 使用主色调 */
-    margin-bottom: 1rem; /* 标题下方间距 */
-    font-size: 1.5rem; /* 稍大字体 */
-    border-bottom: 2px solid var(--accent-color); /* 标题下划线 */
-    padding-bottom: 0.5rem; /* 下划线与文字间距 */
+    font-family: var(--heading-font); /* 标题字体 */
+    color: var(--heading-color);
+    font-size: 1.8em; /* 调整大小 */
+    font-weight: normal;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color); /* 使用新边框色 */
+    padding-bottom: 0.5rem;
 }
-
-/* 卡片内段落样式 */
 .cooperation-card p {
-    line-height: 1.7; /* 更舒适的行高 */
-    margin-bottom: 1rem; /* 段落下间距 */
-    color: #555; /* 深灰色文字 */
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-color);
 }
-
-/* 卡片内列表样式 (ul 和 ol) */
-.cooperation-card ul,
-.cooperation-card ol {
-    margin-left: 1.5rem; /* 列表左侧缩进 */
-    margin-bottom: 1rem; /* 列表下方间距 */
-    color: #555;
+.cooperation-card ul, .cooperation-card ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
 }
-
 .cooperation-card li {
-    margin-bottom: 0.5rem; /* 列表项间距 */
+    margin-bottom: 0.5rem;
     line-height: 1.6;
 }
-
-/* 列表项中的 strong 标签（加粗文字） */
 .cooperation-card strong {
-    color: var(--primary-color); /* 使用主色调强调 */
+    color: var(--primary-color); /* 加粗文字用主色 */
+    font-weight: 700; /* 确保加粗 */
 }
 
-/* 鼠标悬停在卡片上时的效果 */
-.cooperation-card:hover {
-    transform: translateY(-5px); /* 轻微向上移动 */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 阴影加深 */
+/* 17. 联系方式区域 - 更新 */
+.contact-info {
+    background-color: var(--secondary-bg-light); /* 使用辅助浅色背景 */
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+    border-left: 5px solid var(--secondary-color); /* 边框也用辅助色 */
+    box-shadow: 0 4px 10px var(--card-shadow-color);
+    flex-basis: 100%;
+    width: 100%;
 }
-
-/* 页面副标题样式（可选） */
-.page-banner p {
+.contact-info h2 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-size: 1.8em;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.contact-info p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+.contact-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+.contact-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
     font-size: 1.1rem;
-    color: #666;
-    margin-top: 0.5rem;
+    color: var(--text-color);
+}
+.contact-list .icon {
+    margin-right: 0.8rem;
+    font-size: 1.3rem;
+    width: 25px;
+    text-align: center;
+    color: var(--accent-color); /* 联系图标用强调色(金黄色) */
+}
+.contact-list strong {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+    font-weight: 700;
+}
+.contact-list a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-list a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
 }
 
-/* 确保内容容器有足够宽度 */
-.content-container {
-    max-width: 1100px; /* 调整最大宽度以适应卡片布局 */
-    margin: 2rem auto; /* 上下边距及水平居中 */
+/* 18. 响应式调整 (保持原有结构，颜色变量会自动生效) */
+@media (max-width: 992px) {
+    /* 可以在这里为平板调整特定间距或字体大小 */
 }
-
-/* ============================================================== */ 
+@media (max-width: 768px) {
+    .page-banner h1 { font-size: 3em; } /* 调整响应式字体大小 */
+    .nickname { font-size: 1.8em; }
+    .project-card h2 { font-size: 1.6em; }
+    .cooperation-card h2 { font-size: 1.6em; }
+    .contact-info h2 { font-size: 1.6em; }
+    .content-container { padding: 30px; }
+    .life-quote { font-size: 1.5em; }
+    .projects-container { gap: 25px; }
+}
+@media (max-width: 480px) {
+    body { padding-top: 75px; }
+    .page-banner h1 { font-size: 2.5em; }
+    .nickname { font-size: 1.6em; }
+    .navbar a { font-size: 1em; padding: 8px 10px; }
+    .page-banner { padding: 40px 20px; }
+    .project-card h2 { font-size: 1.5em; }
+    .cooperation-card h2 { font-size: 1.5em; }
+    .contact-info h2 { font-size: 1.5em; }
+    .life-quote { font-size: 1.4em; padding: 20px; }
+    .content-container { padding: 20px; }
+    .project-card { padding: 1.5rem; }
+    .contact-info { padding: 1rem 1.5rem; }
+} 
