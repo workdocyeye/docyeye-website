@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 优先使用 Noto Sans SC */
+    line-height: 1.8; /* 增加行高 */
+    color: #343a40; /* 更深的灰色 */
+    background-color: #fdfdff; /* 非常浅的背景 */
+    padding-top: 85px; /* 稍微增加页眉空间 */
+    -webkit-font-smoothing: antialiased; /* 字体抗锯齿 (Mac/iOS) */
+    -moz-osx-font-smoothing: grayscale; /* 字体抗锯齿 (Firefox) */
+}
+
+/* 网站页眉 */
+.site-header {
+    position: fixed; /* 固定在顶部 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 5%; /* 使用百分比进行内边距 */
+    z-index: 1000; /* 确保在最上层 */
+    transition: padding 0.3s ease;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 内容两端对齐 */
+}
+
+/* 头像样式 */
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* 圆形头像 */
+    object-fit: cover; /* 保持图片比例 */
+    border: 2px solid #e9ecef; /* 浅灰色边框 */
+    margin-right: 15px;
+}
+
+/* 网名样式 */
+.nickname {
+    font-family: 'Poppins', sans-serif; /* 使用 Poppins 字体 */
+    font-size: 1.6em;
+    font-weight: 700; /* 加粗 */
+    color: #212529; /* 黑色 */
+    margin-right: auto;
+}
+
+/* 导航栏样式 - 更新 */
+.navbar {
+    background-color: transparent; /* 移除背景色 */
+    overflow: visible; /* 允许内容溢出 */
+    border-radius: 0; /* 移除圆角 */
+    margin-bottom: 0; /* 移除边距 */
+}
+
+.navbar a {
+    float: none; /* 取消浮动 */
+    display: inline-block; /* 行内块元素 */
+    color: #495057;
+    text-align: center;
+    padding: 10px 18px; /* 增加水平内边距 */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500; /* 中等粗细 */
+    font-family: 'Poppins', sans-serif; /* 使用 Poppins 字体 */
+    border-radius: 8px; /* 更圆润的边角 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar a:hover {
+    background-color: #f1f3f5; /* 更淡的悬停背景 */
+    color: #0056b3; /* 深蓝色悬停文字 */
+    transform: translateY(-2px); /* 轻微上移 */
+}
+
+.navbar a.active {
+    color: #007bff;
+    background-color: #e7f5ff; /* 淡蓝色背景表示激活 */
+    font-weight: 700; /* 加粗 */
+}
+
+/* 页面特定内容区域 */
+.page-content {
+    max-width: 1100px; /* 稍微减小最大宽度 */
+    margin: 40px auto 0;
+    padding: 0 30px; /* 增加左右内边距 */
+}
+
+/* 页面 Banner 样式 */
+.page-banner {
+    background: linear-gradient(120deg, #845ef7, #339af0); /* 更新渐变色 */
+    color: white;
+    padding: 60px 40px; /* 增加内边距 */
+    text-align: center;
+    border-radius: 20px; /* 更大的圆角 */
+    margin-bottom: 50px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.page-banner h1 {
+    font-family: 'Poppins', sans-serif; /* 使用 Poppins 字体 */
+    font-size: 3.2em;
+    font-weight: 700;
+    text-shadow: none; /* 移除文字阴影 */
+}
+
+/* 内容容器 (生活我) */
+.content-container {
+    background: white;
+    border-radius: 15px;
+    padding: 50px; /* 增加内边距 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); /* 更柔和的阴影 */
+    margin-bottom: 50px;
+}
+
+.life-quote {
+    font-size: 1.5em; /* 稍大字体 */
+    font-style: normal; /* 取消斜体 */
+    text-align: center;
+    margin-bottom: 50px;
+    color: #495057; /* 调整颜色 */
+    line-height: 1.9;
+    padding: 30px 40px;
+    background-color: #f1f3f5; /* 淡灰色背景 */
+    border-left: 6px solid #339af0; /* 强调色边框 */
+    border-radius: 10px;
+    position: relative;
+}
+
+.life-quote::before { /* 添加引号 */
+    content: '\201C'; /* 左引号 */
+    font-family: Georgia, serif;
+    font-size: 4em;
+    color: #ced4da;
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    opacity: 0.8;
+}
+
+/* 博客列表容器样式 */
+.blog-list-container {
+    /* 继承 .content-container 的大部分样式 */
+}
+
+.blog-list-container > p { /* 针对占位提示信息 */
+    font-size: 1.2em;
+    color: #6c757d;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* 未来博客文章预览样式 (示例) */
+.blog-post-preview {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+.blog-post-preview:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+}
+
+.blog-post-preview h2 {
+    margin-bottom: 10px;
+}
+
+.blog-post-preview h2 a {
+    color: #339af0;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.blog-post-preview h2 a:hover {
+    color: #228be6;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #868e96;
+    margin-bottom: 15px;
+}
+
+.blog-post-preview p:not(.post-meta) { /* 摘要段落 */
+    color: #495057;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.read-more {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.read-more:hover {
+    color: #0056b3;
+    transform: translateX(3px);
+}
+
+/* 项目容器样式 (工作我) - 更新 */
+.projects-container {
+    max-width: none; /* 移除最大宽度限制，由 page-content 控制 */
+    margin: 0; /* 移除外边距 */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 调整最小宽度 */
+    gap: 35px; /* 增加卡片间距 */
+    padding: 0; /* 移除内边距 */
+}
+
+/* 项目卡片样式 - 更新 */
+.project-card {
+    background: white;
+    border-radius: 15px;
+    padding: 35px; /* 增加内边距 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* 调整阴影 */
+    border: 1px solid #f1f3f5; /* 添加细边框 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* 使用 flex 布局 */
+    flex-direction: column; /* 垂直排列 */
+    height: 100%; /* 确保卡片等高 */
+}
+
+.project-card:hover {
+    transform: translateY(-8px); /* 悬停效果更明显 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h2 {
+    color: #339af0; /* 调整标题颜色 */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.project-card h3 {
+    color: #868e96; /* 调整副标题颜色 */
+    margin: 25px 0 15px;
+    font-size: 1em; /* 减小字体 */
+    text-transform: uppercase;
+    letter-spacing: 1px; /* 增加字间距 */
+    font-weight: 700; /* 加粗 */
+    border-bottom: 2px solid #e9ecef; /* 添加分隔线 */
+    padding-bottom: 8px;
+    display: inline-block; /* 使分隔线适应内容宽度 */
+}
+
+.project-content {
+    padding: 0;
+    flex-grow: 1;
+}
+
+/* 列表样式 - 更新 */
+ul {
+    list-style: none; /* 移除默认列表样式 */
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 12px; /* 增加列表项间距 */
+    position: relative;
+    padding-left: 30px;
+    color: #495057; /* 调整列表项颜色 */
+    line-height: 1.7; /* 调整列表项行高 */
+}
+
+li::before {
+    content: "\272A"; /* Unicode 五角星 */
+    color: #fab005; /* 黄色 */
+    font-weight: normal; /* 正常粗细 */
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 1.2em;
+    transition: transform 0.2s ease;
+}
+
+li:hover::before { /* 鼠标悬停图标效果 */
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* 段落样式 - 更新 */
+p {
+    margin-bottom: 18px; /* 增加段落下边距 */
+    color: #495057; /* 统一段落颜色 */
+}
+
+/* 页脚样式 - 更新 */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    color: #868e96; /* 更浅的页脚文字 */
+    background-color: #f8f9fa; /* 页脚背景色 */
+    border-top: 1px solid #e9ecef;
+    font-size: 0.9em;
+}
+
+/* 响应式设计 - 更新 */
+@media (max-width: 992px) {
+    .header-content {
+        flex-direction: column; /* 头部内容垂直排列 */
+        align-items: flex-start; /* 左对齐 */
+    }
+    .nickname {
+        margin-bottom: 10px; /* 网名下方添加间距 */
+        margin-right: 0;
+    }
+    .navbar {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left; /* 导航左对齐 */
+    }
+    body {
+        padding-top: 120px; /* 为更高的固定页眉留空间 */
+    }
+    .page-banner h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+    .page-banner h1 {
+        font-size: 2em;
+    }
+    .content-container {
+        padding: 30px;
+    }
+    .life-quote {
+        font-size: 1.2em;
+        padding: 15px;
+    }
+    body {
+        padding-top: 150px; /* 进一步增加顶部内边距 */
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+    .nickname {
+        font-size: 1.3em;
+    }
+    .navbar a {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    .page-banner {
+        padding: 40px 20px;
+    }
+    .page-banner h1 {
+        font-size: 1.8em;
+    }
+    .content-container {
+        padding: 20px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 12px;
+    }
+    .submit-button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    body {
+        padding-top: 140px;
+    }
+}
+
+/* 移除旧的动画 (如果需要可以保留或修改) */
+/* @keyframes fadeIn ... */
+/* .project-card animation ... */ 
