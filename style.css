@@ -267,24 +267,25 @@ body {
     transform: translateX(3px);
 }
 
-/* 13. 项目容器 (工作我) - 更新 */
+/* 13. 项目容器 (工作我) - 更改为单列垂直布局 */
 .projects-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
-    padding: 0;
+    display: flex; /* 改为 Flexbox */
+    flex-direction: column; /* 设置为垂直方向 */
+    gap: 2.5rem; /* 控制卡片之间的垂直间距 */
+    padding: 0; /* 保持内边距为0 */
 }
 
-/* 14. 项目卡片 - 更新样式 */
+/* 14. 项目卡片 - 适应单列布局 */
 .project-card {
     background: var(--card-bg-color);
     border-radius: 15px;
     padding: 2rem;
-    box-shadow: 0 8px 15px var(--card-shadow-color); /* 调整阴影 */
+    box-shadow: 0 8px 15px var(--card-shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 5px solid var(--primary-color); /* 顶部用主色边框 */
-    display: flex; /* 使用 flex 布局 */
-    flex-direction: column; /* 内容垂直排列 */
+    border-top: 5px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* 确保卡片宽度充满容器 */
 }
 
 .project-card:hover {
@@ -324,26 +325,42 @@ body {
     transform: rotate(15deg) scale(1.1); /* 悬停时图标轻微旋转放大 */
 }
 
-.project-content {
-    flex-grow: 1; /* 让内容区域填充剩余空间 */
-    color: var(--text-color);
+/* 新增: 卡片主内容区域，用于Flex布局 */
+.card-main-content {
+    display: flex;          /* 启用 Flexbox */
+    align-items: center;    /* 垂直居中对齐内容 */
+    gap: 2rem;              /* 文字和图片之间的间距 */
+    flex-wrap: wrap;        /* 在小屏幕上允许换行 */
 }
-.project-content ul, .project-content ol {
-    padding-left: 20px; /* 调整列表缩进 */
-    margin-bottom: 1rem;
-}
-.project-content li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-}
-/* 移除旧的li::before样式 */
-ul { list-style: disc; } /* 使用默认圆点 */
-ol { list-style: decimal; } /* 使用默认数字 */
-li::before { content: none; } /* 确保移除之前的伪元素 */
 
-.project-content p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
+/* 更新: project-content 作为 Flex 项目 */
+.project-content {
+    flex: 2;            /* 分配更多空间给文字内容 (比例为2) */
+    min-width: 250px;   /* 确保文字区域有最小宽度 */
+    /* 移除 flex-grow: 1; 因为现在由父级 Flexbox 控制 */
+    color: var(--text-color); /* 保持 */
+}
+/* 移除清除浮动的伪元素 */
+.project-content::after {
+  /* content: ""; */
+  /* clear: both; */
+  /* display: table; */
+  content: none; /* 直接移除 */
+}
+
+/* 更新: 项目图片作为右侧 Flex 项目 */
+.project-image {
+    flex: 1;            /* 分配空间比例为1 */
+    display: block;
+    /* width: auto; */ /* 让宽度自适应 Flex 容器 */
+    max-width: 280px;  /* 限制图片最大宽度，避免过大 */
+    height: auto;
+    /* float: none; */ /* 移除浮动 */
+    margin: 0 auto; /* 在 Flex 容器中自动居中（如果需要）或设置左边距 */
+    margin-left: auto; /* 尝试推到最右边 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 稍微调整阴影 */
+    /* align-self: center; */ /* 确保在交叉轴居中 */
 }
 
 /* 15. 页脚 - 更新颜色 */
@@ -478,6 +495,16 @@ footer {
     .content-container { padding: 30px; }
     .life-quote { font-size: 1.5em; }
     .projects-container { gap: 25px; }
+    .card-main-content {
+        flex-direction: column; /* 垂直堆叠 */
+        gap: 1.5rem;
+    }
+    .project-image {
+        max-width: 70%; /* 限制图片宽度 */
+        margin: 1rem auto; /* 上下留白并居中 */
+        order: -1; /* 将图片移到文字上方 (可选) */
+        margin-left: auto; /* 覆盖之前的 margin-left: auto */
+    }
 }
 @media (max-width: 480px) {
     body { padding-top: 75px; }
